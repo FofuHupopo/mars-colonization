@@ -1,5 +1,5 @@
 from flask import request, redirect, render_template, url_for
-from flask.views import View
+from flask.views import View, ft
 
 
 class IndexView(View):
@@ -28,7 +28,7 @@ class TrainingView(View):
         "врач": "scientist"
     }
 
-    def dispatch_request(self, prof: str):
+    def dispatch_request(self, prof: str) -> ft.ResponseReturnValue:
         context = {
             "image_url": "",
             "subtitle": "Отдыхайте. Для вас пока что нет работы..."
@@ -39,4 +39,28 @@ class TrainingView(View):
         if prof_type:
             context = TrainingView.PROF_TO_TARINING_MAP[prof_type]
 
-        return render_template("prof.html", **context)
+        return render_template(
+            "prof/prof.html",
+            **context
+        )
+    
+
+class ProfListView(View):
+    PROF_LIST = (
+        "инженер-исследователь", "пилот", "строитель", "экзобиолог",
+        "врач", "инженер по терраформированию", "климатолог",
+        "специалист по радиационной защите", "астрогеолог",
+        "гляциолог", "инженер жизнеобеспечения", "метеоролог",
+        "оператор марсохода", "киберинженер", "штурман", "пилот дронов",
+    )
+    
+    def dispatch_request(self, list: str=None) -> ft.ResponseReturnValue:
+        context = {
+            "prof_list": ProfListView.PROF_LIST,
+            "list_type": list
+        }
+
+        return render_template(
+            "prof/prof-list.html",
+            **context
+        )

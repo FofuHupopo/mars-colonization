@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+    {% if list_type in ('ol', 'ul') %}
+            <h2 class="text-3xl font-bold mb-4">Список профессий</h2>
+            <{{list_type}} class="{% if list_type == 'ol' %} list-decimal {% else %} list-disc {% endif %} ml-10">
+
+            {% for prof in prof_list %}
+                <li>{{ prof }}</li>
+            {% endfor %}
+
+            </{{list_type}}>
+        {% else %}
+            <p class="flex justify-center text-3xl"><span class="text-red-400 font-bold mr-2">ОШИБКА!!!</span> Неверный параметр запроса "{{ list_type }}". Ожидались "ol" или "ul"</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

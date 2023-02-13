@@ -5,19 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,800;1,100;1,200&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>{{ title }}</title>
 </head>
 <body>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+
     <header>
-        <nav class="px-10 py-4 bg-slate-800 text-white font-bold text-xl">
+        <nav class="px-10 py-4 bg-slate-800 text-white font-bold text-4xl">
             <h1>Миссия Колонизация Марса</h1>
         </nav>
 
         <h4 class="px-10 text-slate-400 mt-1 mb-4">И на Марсе будут яблони цвести!</h4>
     </header>
 
-    <div class="container mx-auto mt-10">
+    <div class="container mx-auto mt-10 text-slate-800 text-lg">
         {% block content %}
         {% endblock %}
     </div>
