@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <p class="flex justify-center text-lg font-bold">{{ subtitle }}</p>
+        {% if image_url %}
+        <img class="flex justify-center" src="{{ url_for('static', filename=image_url) }}" alt="">
+        {% endif %}
+    </div>
+{% endblock %}

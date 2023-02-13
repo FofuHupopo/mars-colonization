@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <nav class="px-10 py-4 bg-slate-800 text-white font-bold text-xl">
+            <h1>Миссия Колонизация Марса</h1>
+        </nav>
+
+        <h4 class="px-10 text-slate-400 mt-1 mb-4">И на Марсе будут яблони цвести!</h4>
+    </header>
+
+    <div class="container mx-auto mt-10">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
