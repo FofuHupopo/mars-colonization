@@ -1,6 +1,8 @@
 from flask import request, redirect, render_template, url_for
 from flask.views import View, ft
 
+import forms
+
 
 class IndexView(View):
     def dispatch_request(self, title: str):
@@ -64,3 +66,15 @@ class ProfListView(View):
             "prof/prof-list.html",
             **context
         )
+
+
+class SurveyView(View):
+    methods = ["get", "post"]
+
+    def dispatch_request(self) -> ft.ResponseReturnValue:
+        survey_form = forms.SurveyForm()
+        
+        if survey_form.validate_on_submit():
+            return render_template('survey/auto_answer.html', form=survey_form)
+        
+        return render_template('survey/survey.html', form=survey_form)

@@ -1,0 +1,14 @@
+.wrapper {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    justify-self: flex-end;
+    margin-top: auto;
+
+    text-align: center;
+}

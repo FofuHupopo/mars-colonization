@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,800;1,100;1,200&display=swap" rel="stylesheet">
@@ -12,23 +12,23 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-    </style>
+    <div class="wrapper">
+        <header>
+            <nav class="px-10 py-4 bg-slate-800 text-white font-bold text-4xl">
+                <h1>Миссия Колонизация Марса</h1>
+            </nav>
 
-    <header>
-        <nav class="px-10 py-4 bg-slate-800 text-white font-bold text-4xl">
-            <h1>Миссия Колонизация Марса</h1>
-        </nav>
+            <h4 class="px-10 text-slate-400 mt-1 mb-4">И на Марсе будут яблони цвести!</h4>
+        </header>
 
-        <h4 class="px-10 text-slate-400 mt-1 mb-4">И на Марсе будут яблони цвести!</h4>
-    </header>
+        <div class="container mx-auto mt-10 text-slate-800 text-lg content">
+            {% block content %}
+            {% endblock %}
+        </div>
 
-    <div class="container mx-auto mt-10 text-slate-800 text-lg">
-        {% block content %}
-        {% endblock %}
+        <footer class="p-4 bg-slate-400 text-slate-200 font-bold">
+            © iizhukov@icloud.com
+        </footer>
     </div>
 </body>
 </html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post" novalidate class="w-1/2 m-auto">
+        <div>
+            {{ form.hidden_tag() }}
+        </div>
+
+        {% for field in form if field.name != 'csrf_token' %}
+            <div>
+                {% if field.name == 'is_ready' %}
+                        <p class="text-xl font-medium mt-4">{{ field.label() }} {{ field(class="ml-3 h-4 w-4") }}</p>
+                    <p class=></p>
+                {% else %}
+                    <p class="text-xl font-medium mt-4">{{ field.label() }}</p>
+                    <p class="border-slate-600 border-2 rounded">{{ field(style="width: 100%") }}</p>
+                {% endif %}
+    
+                {% for error in field.errors %}
+                    <div class="error text-red-400">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    </form>
+{% endblock %}
