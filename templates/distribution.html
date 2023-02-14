@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="w-1/2 m-auto flex flex-col">
+        <h2 class="m-auto text-3xl font-bold mb-5">Размещение по каютам</h2>
+
+        {% set cabin = "Каюта №" %}
+
+        {% for crew_member in crew_list %}
+            <p class="mt-3">
+                <span class="font-bold">{{ crew_member }}</span> - {{ cabin }} {{ loop.index }}
+                {% if loop.first %}
+                    - капитан корабля
+                {% endif %}
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

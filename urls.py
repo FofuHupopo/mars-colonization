@@ -11,3 +11,6 @@ app.add_url_rule("/list_prof/<string:list>", view_func=views.ProfListView.as_vie
 
 app.add_url_rule("/answer", view_func=views.SurveyView.as_view("survey"))
 app.add_url_rule("/emergency-access", view_func=views.EmergencyAccessView.as_view("emergency_access"))
+
+app.add_url_rule("/distribution", view_func=views.DistributionAccessView.as_view("distribution"))
+

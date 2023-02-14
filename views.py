@@ -90,3 +90,17 @@ class EmergencyAccessView(View):
             return redirect("/index/Главная")
         
         return render_template('emergency-access.html', form=access_form)
+
+
+class DistributionAccessView(View):
+    CREW_LIST = (
+        "Ридли Скотт", "Энди Уир", "Марк Уотни",
+        "Венката Капур", "Тедди Сандерс", "Шон Бин",
+    )
+    
+    def dispatch_request(self) -> ft.ResponseReturnValue:
+        context = {
+            "crew_list": DistributionAccessView.CREW_LIST
+        }
+
+        return render_template('distribution.html', **context)
