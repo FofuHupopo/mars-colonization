@@ -2,11 +2,17 @@ from flask import request, redirect, render_template, url_for, send_from_directo
 from flask.views import View, ft
 from pathlib import Path
 from os import listdir
+import json
 
 import forms
 
 
 MEDIA_URL = Path(__file__).parent / "media"
+
+
+def load_members(path) -> list:
+    with open(path, "r") as file:
+        return json.load(file)
 
 
 class IndexView(View):
@@ -161,3 +167,10 @@ class MediaView(View):
             MEDIA_URL,
             filename,
         )
+
+
+class MemberView(View):
+    MEMBERS = load_members("templates/members.json")
+
+    def dispatch_request(self):
+        return render_template("members.html", members=MemberView.MEMBERS)

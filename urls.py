@@ -19,3 +19,5 @@ app.add_url_rule("/table/<string:sex>/<int:age>", view_func=views.TableView.as_v
 
 app.add_url_rule("/gallery", view_func=views.LandscapeGalleryView.as_view("gallery"))
 app.add_url_rule("/media/<string:filename>", view_func=views.MediaView.as_view("media_gallery"))
+
+app.add_url_rule("/member", view_func=views.MemberView.as_view("member"))

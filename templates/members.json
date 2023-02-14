@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Энди Уир",
+        "photo": "images/personal/alien-1.jpg",
+        "professions": [
+            "астрогеолог",
+            "специалист по радиационной защите"
+        ]
+    },
+    {
+        "name": "Круна Кроуль",
+        "photo": "images/personal/alien-2.webp",
+        "professions": [
+            "уборщица",
+            "астролог"
+        ]
+    },
+    {
+        "name": "Тала Екранова",
+        "photo": "images/personal/alien-3.webp",
+        "professions": [
+            "бармен",
+            "бариста"
+        ]
+    },
+    {
+        "name": "Лум Пронькинов",
+        "photo": "images/personal/alien-4.jpg",
+        "professions": [
+            "инженер",
+            "специалист по военному оборудованию"
+        ]
+    }
+]
