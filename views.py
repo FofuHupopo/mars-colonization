@@ -92,7 +92,7 @@ class EmergencyAccessView(View):
         return render_template('emergency-access.html', form=access_form)
 
 
-class DistributionAccessView(View):
+class DistributionView(View):
     CREW_LIST = (
         "Ридли Скотт", "Энди Уир", "Марк Уотни",
         "Венката Капур", "Тедди Сандерс", "Шон Бин",
@@ -100,7 +100,31 @@ class DistributionAccessView(View):
     
     def dispatch_request(self) -> ft.ResponseReturnValue:
         context = {
-            "crew_list": DistributionAccessView.CREW_LIST
+            "crew_list": DistributionView.CREW_LIST
         }
 
         return render_template('distribution.html', **context)
+
+
+class TableView(View):
+    def dispatch_request(self, sex: str, age: int) -> ft.ResponseReturnValue:
+        context = {
+            "cabine_color": "",
+            "crew_member_image_path": ""
+        }
+
+        if sex == "male":
+            context["cabine_color"] = "bg-blue"
+        else:
+            context["cabine_color"] = "bg-orange"
+        
+        if age < 21:
+            context["crew_member_image_path"] = "images/alien-baby.jpg"
+            
+            context["cabine_color"] += "-200"
+        else:
+            context["crew_member_image_path"] = "images/alien.jpg"
+            
+            context["cabine_color"] += "-600"
+        
+        return render_template('table.html', **context)
