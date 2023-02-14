@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post" novalidate class="w-1/2 m-auto">
+        <div class="flex mb-4">
+            <img src="{{ url_for('static', filename='images/mars-logo.png') }}" alt="" class="w-28">
+            <h2 class="text-slate-800 text-3xl font-bold">Аварийный доступ</h2>
+        </div>
+
+        <div>
+            {{ form.hidden_tag() }}
+        </div>
+
+        <div class="block">
+            {% for field in form if field.name != 'csrf_token' %}
+            <div class="mt-5">
+                {% if field.name == "submit" %}
+                    <p>{{ field(class="border-2 rounded p-1 text-slate-100 bg-slate-700 font-bold", style="width: 16%") }}</p>
+                {% else %}
+                    <h3>{{ field.label(class="text-xl") }}</h3>
+                    <p>{{ field(class="border-2 rounded", style="width: 100%") }}</p>
+                {% endif %}
+                
+                {% for error in form.astronaut_id.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+
+                <!-- <div>
+                    {% if field.name == 'is_ready' %}
+                            <p class="text-xl font-medium mt-4">{{ field.label() }} {{ field(class="ml-3 h-4 w-4") }}</p>
+                        <p class=></p>
+                    {% else %}
+                        <p class="text-xl font-medium mt-4">{{ field.label() }}</p>
+                        <p class="border-slate-600 border-2 rounded">{{ field(style="width: 100%") }}</p>
+                    {% endif %}
+        
+                    {% for error in field.errors %}
+                        <div class="error text-red-400">{{ error }}</div>
+                    {% endfor %}
+                </div> -->
+            {% endfor %}
+        </div>
+
+    </form>
+{% endblock %}

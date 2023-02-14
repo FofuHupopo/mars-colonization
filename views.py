@@ -78,3 +78,15 @@ class SurveyView(View):
             return render_template('survey/auto_answer.html', form=survey_form)
         
         return render_template('survey/survey.html', form=survey_form)
+
+
+class EmergencyAccessView(View):
+    methods = ["get", "post"]
+
+    def dispatch_request(self) -> ft.ResponseReturnValue:
+        access_form = forms.EmergancyAccessForm()
+        
+        if access_form.validate_on_submit():
+            return redirect("/index/Главная")
+        
+        return render_template('emergency-access.html', form=access_form)

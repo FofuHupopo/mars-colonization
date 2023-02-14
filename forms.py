@@ -16,3 +16,12 @@ class SurveyForm(form.FlaskForm):
         "Готовы остаться на марсе?",
     )
     submit = fields.SubmitField("Ответить")
+    
+
+class EmergancyAccessForm(form.FlaskForm):
+    astronaut_id = fields.IntegerField("Id астронавта", validators=[validators.DataRequired()])
+    astronaut_password = fields.PasswordField("Пароль астронавта", validators=[validators.DataRequired(), validators.length(1, 100)])
+    captain_id = fields.IntegerField("Id астронавта", validators=[validators.DataRequired()])
+    captain_password = fields.PasswordField("Пароль капитана", validators=[validators.DataRequired(), validators.length(1, 100)])
+
+    submit = fields.SubmitField("Доступ")
