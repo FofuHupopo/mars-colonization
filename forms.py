@@ -15,6 +15,7 @@ class SurveyForm(form.FlaskForm):
     is_ready = fields.BooleanField(
         "Готовы остаться на марсе?",
     )
+
     submit = fields.SubmitField("Ответить")
     
 
@@ -25,3 +26,9 @@ class EmergancyAccessForm(form.FlaskForm):
     captain_password = fields.PasswordField("Пароль капитана", validators=[validators.DataRequired(), validators.length(1, 100)])
 
     submit = fields.SubmitField("Доступ")
+
+
+class LandscapeForm(form.FlaskForm):
+    image = fields.FileField("Пейзаж")
+
+    submit = fields.SubmitField("Отправить")

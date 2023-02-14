@@ -20,11 +20,9 @@
                     <h3>{{ field.label(class="text-xl") }}</h3>
                     <p>{{ field(class="border-2 rounded", style="width: 100%") }}</p>
                 {% endif %}
-                
-                {% for error in form.astronaut_id.errors %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </div>
+
+                {% for error in field.errors %}
+                    <div class="error text-red-400">{{ error }}</div>
                 {% endfor %}
             </div>
 

@@ -1,4 +1,5 @@
 from app import app
+from flask import send_from_directory
 
 import views
 
@@ -15,3 +16,6 @@ app.add_url_rule("/emergency-access", view_func=views.EmergencyAccessView.as_vie
 app.add_url_rule("/distribution", view_func=views.DistributionView.as_view("distribution"))
 
 app.add_url_rule("/table/<string:sex>/<int:age>", view_func=views.TableView.as_view("table"))
+
+app.add_url_rule("/gallery", view_func=views.LandscapeGalleryView.as_view("gallery"))
+app.add_url_rule("/media/<string:filename>", view_func=views.MediaView.as_view("media_gallery"))

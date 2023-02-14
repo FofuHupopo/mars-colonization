@@ -1,7 +1,12 @@
-from flask import request, redirect, render_template, url_for
+from flask import request, redirect, render_template, url_for, send_from_directory
 from flask.views import View, ft
+from pathlib import Path
+from os import listdir
 
 import forms
+
+
+MEDIA_URL = Path(__file__).parent / "media"
 
 
 class IndexView(View):
@@ -117,14 +122,42 @@ class TableView(View):
             context["cabine_color"] = "bg-blue"
         else:
             context["cabine_color"] = "bg-orange"
-        
+
         if age < 21:
-            context["crew_member_image_path"] = "images/alien-baby.jpg"
-            
+            context["crew_member_image_path"] = "images/alien/alien-baby.jpg"
             context["cabine_color"] += "-200"
         else:
-            context["crew_member_image_path"] = "images/alien.jpg"
-            
+            context["crew_member_image_path"] = "images/alien/alien.jpg"
             context["cabine_color"] += "-600"
-        
+
         return render_template('table.html', **context)
+
+
+class LandscapeGalleryView(View):
+    methods = ["get", "post"]
+
+    def dispatch_request(self) -> ft.ResponseReturnValue:
+        form = forms.LandscapeForm()
+        
+        if form.validate_on_submit():
+            if form.image.data:
+                filename = form.image.data.filename
+                form.image.data.save(MEDIA_URL / filename)
+                
+            return redirect("/gallery")
+        
+        context = {
+            "form": form,
+            "images": listdir(MEDIA_URL)[::-1],
+            "media_url": "/media/"
+        }
+        
+        return render_template('landscape-gallery.html', **context)
+
+
+class MediaView(View):
+    def dispatch_request(self, filename):
+        return send_from_directory(
+            MEDIA_URL,
+            filename,
+        )
