@@ -1,11 +1,10 @@
 from urls import app
 from data import db_session
 from data.users import User
+from data.jobs import Jobs
 
 
-def addСaptain():
-    session = db_session.create_session()
-
+def add_captain(session):
     captain = User(
         surname="Scott", name="Ridley", age=21,
         position="captain", speciality="research engineer",
@@ -46,14 +45,27 @@ def addСaptain():
     user3.set_password(user3.hashed_password)
     session.add(user3)
     
-    session.commit()
-    session.close()
+
+def add_job(session):
+    db_session.global_init("db/mars_explorer2.sqlite")
+    
+
+    job = Jobs(
+        team_leader=1, job='deployment of residential modules 1 and 2',
+        work_size=15, collaborators='2, 3', is_finished=False,
+    )
+    session.add(job)
 
 
 def main():
     db_session.global_init("db/mars_colonization.db")
+    session = db_session.create_session()
     
-    addСaptain()
+    # add_captain(session)
+    # add_job(session)
+    
+    session.commit()
+    session.close()
     
     app.run()
 
