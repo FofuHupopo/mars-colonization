@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 align="center">Works log</h2>
+
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;}
+    .tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
+      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
+      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-djlo{background-color:#c0c0c0;font-style:italic;text-align:left;vertical-align:top}
+    .tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg" style="table-layout: fixed; width: 674px">
+<thead>
+    <tr>
+    <th class="tg-djlo">Number</th>
+    <th class="tg-djlo">Title of activity</th>
+    <th class="tg-djlo">Team leader</th>
+    <th class="tg-djlo">Duration</th>
+    <th class="tg-djlo">List of collaborators</th>
+    <th class="tg-djlo">Is finished</th>
+    </tr>
+</thead>
+<tbody>
+    {% for job in jobs %}
+        <tr>
+        <td class="tg-0lax">{{ job.id }}</td>
+        <td class="tg-0lax">{{ job.job.capitalize() }}</td>
+        <td class="tg-0lax">{{ job.user.surname }} {{ job.user.name }}</td>
+        <td class="tg-0lax">{{ job.work_size }} hours</td>
+        <td class="tg-0lax">{{ job.collaborators }}</td>
+        {% if job.is_finished %}
+            <td class="tg-0lax">Finished</td>
+        {% else %}
+            <td class="tg-0lax">Is not finished</td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

@@ -1,10 +1,13 @@
-from flask import request, redirect, render_template, url_for, send_from_directory
+from flask import redirect, render_template, send_from_directory
 from flask.views import View, ft
 from pathlib import Path
 from os import listdir
 import json
 
 import forms
+from data import db_session
+from data.jobs import Jobs
+from data.users import User
 
 
 MEDIA_URL = Path(__file__).parent / "media"
@@ -174,3 +177,11 @@ class MemberView(View):
 
     def dispatch_request(self):
         return render_template("members.html", members=MemberView.MEMBERS)
+
+
+class JobLogView(View):
+    def dispatch_request(self) -> ft.ResponseReturnValue:
+        session = db_session.create_session()
+        jobs = session.query(Jobs).all()
+
+        return render_template("job_log.html", jobs=jobs)

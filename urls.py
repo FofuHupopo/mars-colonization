@@ -4,6 +4,7 @@ from flask import send_from_directory
 import views
 
 
+app.add_url_rule("/", view_func=views.JobLogView.as_view("job_log"))
 app.add_url_rule("/<string:title>", view_func=views.IndexView.as_view("index"))
 app.add_url_rule("/index/<string:title>", view_func=views.IndexView.as_view("index1"))
 
